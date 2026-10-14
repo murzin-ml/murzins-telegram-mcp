@@ -5,7 +5,8 @@ DESCRIPTION_CHATS: Final[str] = (
     "Optional query filters by title or username. Read-only."
 )
 DESCRIPTION_MESSAGES: Final[str] = (
-    "Read messages of one chat, oldest first. chat is @username or id from tg_chats. "
+    "Read messages of one chat, group or channel, oldest first. chat is the chat title as shown in Telegram, "
+    "@username or id from tg_chats. "
     "before_id pages back; search filters by text. Does not mark messages as read."
 )
 DESCRIPTION_SEARCH: Final[str] = (

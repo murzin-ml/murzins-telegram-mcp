@@ -1,7 +1,7 @@
 from mcp.server import MCPServer
 
-from app.api.constants import SERVER_INSTRUCTIONS, SERVER_NAME, SERVER_VERSION
-from app.api.routes import register_tools
+from app.api.constants import SERVER_NAME, SERVER_VERSION
+from app.api.routes import register_tools, server_instructions
 from app.di.containers import DIContainer
 from app.infra.adapters.logging import configure_logging
 
@@ -14,7 +14,8 @@ def create_server(container: DIContainer | None = None) -> MCPServer:
     :return: Настроенный сервер.
     """
     container = container or DIContainer()
-    server = MCPServer(name=SERVER_NAME, version=SERVER_VERSION, instructions=SERVER_INSTRUCTIONS)
+    instructions = server_instructions(read_enabled=container.telegram_settings().TG_READ_ENABLED)
+    server = MCPServer(name=SERVER_NAME, version=SERVER_VERSION, instructions=instructions)
     register_tools(server=server, container=container)
     return server
 

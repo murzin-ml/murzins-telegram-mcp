@@ -14,7 +14,11 @@ class ChatDenied(ChatsServiceError):
 
 
 class ChatNotFound(ChatsServiceError):
-    msg_template = "чат {chat} не найден: укажите @username или id из tg_chats"
+    msg_template = "чат {chat} не найден: укажите название чата, @username или id из tg_chats"
+
+
+class ChatAmbiguous(ChatsServiceError):
+    msg_template = "под «{chat}» подходит несколько чатов: {options}; уточните название или укажите id из tg_chats"
 
 
 class EmptyQuery(ChatsServiceError):

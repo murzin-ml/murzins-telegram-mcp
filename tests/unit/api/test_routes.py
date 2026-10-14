@@ -25,3 +25,12 @@ async def test_read_tools_are_hidden_when_reading_is_disabled():
 
 async def test_read_tools_are_registered_when_reading_is_enabled():
     assert await tool_names(container_with(TG_READ_ENABLED=True)) == BOT_TOOLS | READ_TOOLS
+
+
+def test_instructions_explain_how_to_enable_reading_when_it_is_off():
+    from app.api.routes import server_instructions
+
+    disabled = server_instructions(read_enabled=False)
+    assert "TG_READ_ENABLED=true" in disabled
+    assert "не бот" in disabled
+    assert "tg_messages" in server_instructions(read_enabled=True)

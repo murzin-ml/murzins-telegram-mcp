@@ -2,7 +2,7 @@ from typing import Final
 
 DESCRIPTION_HISTORY: Final[str] = (
     "Last messages in the chat with a bot, oldest first, with button labels and attached files. "
-    "Works only with bot accounts."
+    "Only for chats with bot accounts; to read people, groups and channels use tg_messages."
 )
 DESCRIPTION_SEND: Final[str] = "Send a text message or command (e.g. /start) to a bot and wait for its reply."
 DESCRIPTION_PRESS: Final[str] = (

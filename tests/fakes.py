@@ -75,3 +75,40 @@ class FakeChatsRepository:
 
     async def search_global(self, *, query: str, limit: int) -> tuple[SearchHitDTO, ...]:
         return self.global_hits[:limit]
+
+
+@dataclass
+class FakeDialog:
+    name: str
+    entity: object
+    id: int = 0
+    unread_count: int = 0
+    date: object = None
+
+
+@dataclass
+class FakeTelegramClient:
+    """Минимальный клиент Telethon для тестов репозиториев: только разрешение сущностей."""
+
+    dialogs: list[FakeDialog] = field(default_factory=list)
+    usernames: dict[str, object] = field(default_factory=dict)
+
+    async def get_entity(self, ref: object) -> object:
+        if isinstance(ref, str) and ref.lower() in self.usernames:
+            return self.usernames[ref.lower()]
+        raise ValueError(f'No user has "{ref}" as username')
+
+    async def iter_dialogs(self, limit: int):
+        for dialog in self.dialogs[:limit]:
+            yield dialog
+
+    async def get_dialogs(self) -> list[FakeDialog]:
+        return self.dialogs
+
+
+@dataclass
+class FakeClientProvider:
+    client: FakeTelegramClient
+
+    async def get(self) -> FakeTelegramClient:
+        return self.client
