@@ -1,0 +1,22 @@
+# Белый список: в репозиторий попадает только перечисленное ниже.
+# Секреты (.env.local), сессии Telethon, кэши и рабочие файлы остаются локально.
+/*
+!/.gitignore
+!/.python-version
+!/.pre-commit-config.yaml
+!/pyproject.toml
+!/uv.lock
+!/Makefile
+!/.env.example
+!/app/
+!/settings/
+!/tests/
+!/README.md
+!/AGENTS.md
+!/CHANGELOG.md
+
+__pycache__/
+*.py[cod]
+*.session
+*.session-journal
+.env.local
