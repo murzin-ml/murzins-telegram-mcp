@@ -30,7 +30,7 @@ def register_tools(server: MCPServer, container: DIContainer) -> None:
     )
     async def tg_bot_history(bot: str, limit: int = 10) -> dict[str, Any]:
         """
-        :param bot: Юзернейм бота, например specflowbot.
+        :param bot: Юзернейм бота, например kwork_murzin_parser_bot.
         :param limit: Сколько сообщений вернуть, до 50.
         :return: Сообщения чата.
         """
